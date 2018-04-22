@@ -8,12 +8,17 @@ import org.springframework.stereotype.Component;
 public class ApplicationProps {
 
 
+<<<<<<< HEAD
     private String stockUrl = "https://www.alphavantage.co/query?";
     private String stockApiKey = "7DVAXDS48KAJVN2K";
 
     private String weatherUrl = "http://samples.openweathermap.org/data/2.5/weather?";
     private String weatherApiKey = "2f404fb69230b4614696b01efc6ce28c";
 
+=======
+    private String stockApiKey = "7DVAXDS48KAJVN2K";
+
+>>>>>>> b798a2a... no message
 
     public String getStockApiKey() {
         return stockApiKey;
@@ -22,6 +27,7 @@ public class ApplicationProps {
     public void setStockApiKey(String stockApiKey) {
         this.stockApiKey = stockApiKey;
     }
+<<<<<<< HEAD
 
     public String getWeatherApiKey() {
         return weatherApiKey;
@@ -46,4 +52,6 @@ public class ApplicationProps {
     public void setWeatherUrl(String weatherUrl) {
         this.weatherUrl = weatherUrl;
     }
+=======
+>>>>>>> b798a2a... no message
 }
