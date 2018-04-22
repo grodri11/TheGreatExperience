@@ -1,22 +1,15 @@
 package thegreatexperience.api.stocks;
 
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-=======
-import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> b798a2a... no message
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-<<<<<<< HEAD
 import thegreatexperience.api.RestClient;
-=======
->>>>>>> b798a2a... no message
 import thegreatexperience.config.ApplicationProps;
 
 @RestController
@@ -26,7 +19,6 @@ public class StocksController {
     @Autowired
     ApplicationProps props;
 
-<<<<<<< HEAD
     @Autowired
     ObjectMapper objectMapper;
 
@@ -57,18 +49,6 @@ public class StocksController {
         }
 
         return ResponseEntity.ok(json);
-=======
-    @RequestMapping("")
-    public ResponseEntity<String> getStocks(){
-        RestClient restClient = new RestClient("https://www.alphavantage.co/query?function=SECTOR&outputsize=compact&apikey=" + props.getStockApiKey());
-        return restClient.doGet();
-    }
-
-    @RequestMapping("{stock}")
-    public ResponseEntity<String> getStockInfo(@PathVariable String stock){
-        RestClient restClient = new RestClient("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&outputsize=compact&symbol="+stock+"&apikey=" + props.getStockApiKey());
-        return restClient.doGet();
->>>>>>> b798a2a... no message
     }
 
 }
