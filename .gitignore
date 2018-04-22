@@ -1,1 +1,5 @@
-/WebContent/static/reactui/node_modules
+/.idea
+/.gradle
+/out
+/build
+

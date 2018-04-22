@@ -1,8 +1,6 @@
-package api;
+package thegreatexperience.api;
 
-import api.stocks.Stock;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
@@ -16,7 +14,6 @@ public class RestClient<T> {
         this.endpoint = endpoint;
     }
 
-
     private RestTemplate getRestTemplate(){
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new SimpleClientHttpRequestFactory());
@@ -24,10 +21,10 @@ public class RestClient<T> {
         return restTemplate;
     }
 
-    public ResponseEntity<String> doGet(){
+    public String doGet(){
         RestTemplate restTemplate = getRestTemplate();
 
-        ResponseEntity<String> response = restTemplate.getForEntity(this.endpoint, String.class);
+        String response = restTemplate.getForObject(this.endpoint, String.class);
 
         return response;
     }

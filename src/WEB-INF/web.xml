@@ -34,7 +34,7 @@
 </servlet>
 <servlet-mapping>
 <servlet-name>rest</servlet-name>
-<url-pattern>/api/*</url-pattern>
+<url-pattern>/thegreatexperience.api/*</url-pattern>
 </servlet-mapping>
 
 <welcome-file-list>
