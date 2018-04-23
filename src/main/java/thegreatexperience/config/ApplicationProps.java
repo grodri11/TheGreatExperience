@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationProps {
 
+    private String dbHostName = "great-experience.cuddyacghg97.us-east-2.rds.amazonaws.com";
+    private String dbPort = "3306";
 
     private String stockUrl = "https://www.alphavantage.co/query?";
     private String stockApiKey = "7DVAXDS48KAJVN2K";
@@ -48,4 +50,19 @@ public class ApplicationProps {
         this.weatherUrl = weatherUrl;
     }
 
+    public String getDbHostName() {
+        return dbHostName;
+    }
+
+    public void setDbHostName(String dbHostName) {
+        this.dbHostName = dbHostName;
+    }
+
+    public String getDbPort() {
+        return dbPort;
+    }
+
+    public void setDbPort(String dbPort) {
+        this.dbPort = dbPort;
+    }
 }
