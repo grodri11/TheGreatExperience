@@ -7,38 +7,131 @@
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.23.1/babel.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <body>
 
 <div id="app"></div>
 
+    <!-- Your custom script here -->
     <script type="text/babel">
-        const name = 'Tyler';
-        const handle = '@handle';
-
-
-        function NameComponent (props) {
-            return  <h1>{props.name}</h1>
+    const API = {
+        // Gets all books
+        getStocks: function() {
+        return axios.get("/stocks");
+        },
+        getWeather: function() {
+        return axios.get("/weather");
         }
+     };
+     
+    const Container = ({ fluid, children }) =>
+        <div className={`container${fluid ? "-fluid" : ""}`}>
+            {children}
+        </div>;
 
 
-        function HandleComponent (props) {
-            return  <h1>{props.handle}</h1>
-        }
 
-        function App(){
-            return (
-                <div id="container">
-                    <NameComponent name = {name} />
-                    <HandleComponent handle={handle} />
-                </div>
-            )
-        }
+    const Col = ({ size, children }) =>
+        <div className={size.split(" ").map(size => "col-" + size).join(" ")}>
+            {children}
+        </div>;
+    
 
-    ReactDOM.render(
-        <App />, document.getElementById('app')
-    )
+    const Row = ({ fluid, children }) =>
+        <div className={`row${fluid ? "-fluid" : ""}`}>
+            {children}
+        </div>;
+
+
+    const Viewport = ({ children }) =>
+        <div style={{ height: 300, clear: 'both' }} className="viewport">
+            {children}
+        </div>;
+    
+        class Dashboard extends React.Component {
+            state = {
+                stocks: [],
+                weather: []
+            };
+
+            componentDidMount() {
+                this.loadStocks();
+                this.loadWeather();
+            }
+
+            loadStocks = () => {
+                API.getStocks()
+                .then(res => this.setState({ stocks: res.data }))
+                .catch(err => console.log(err));
+            };
+
+            loadWeather = () => {
+                API.getWeather()
+                .then(res => this.setState({weather: res.data}))
+                .catch(err => console.log(err));
+            };
+
+            render() {  
+                return (
+                <Container fluid>
+                    <Row>
+                    <Col size="md-6">
+                        <Viewport>
+                        <h1>Socks on Stocks</h1>
+
+                            {this.state.stocks.length ? (
+                        <List>
+                            {this.state.stocks.map(stock => (
+                            <ListItem key={stock._id}>
+                                <a href={"/stocks/" + stock._id}>
+                                <strong>
+                                    {stock}
+                                </strong>
+                                </a>
+                            </ListItem>
+                            ))}
+                        </List>
+                        ) : (
+                        <h3>No Results to Display</h3>
+                        )}
+
+                        </Viewport>
+                    </Col>
+                    <Col size="md-6">
+                            <Viewport>
+                            <h1>Rain Rain Go Away...</h1>
+                
+                                {this.state.weather.length ? (
+                            <List>
+                                {this.state.weather.map(weather => (
+                                <ListItem key={weather._id}>
+                                    <a href={"/weather/" + weather._id}>
+                                    <strong>
+                                        {weather}
+                                    </strong>
+                                    </a>
+                                </ListItem>
+                                ))}
+                            </List>
+                            ) : (
+                            <h3>Look outside or ask Alexa</h3>
+                            )}
+                
+                            </Viewport>
+                        </Col>
+
+                    </Row>
+                </Container>
+                );
+            }
+            }
+
+    ReactDOM.render(<Dashboard />, document.getElementById('app'));
+    // const getMessage = () => "Hello World";
+    // document.getElementById('output').innerHTML = getMessage();
     </script>
-
+    
 </body>
 </html>
 
