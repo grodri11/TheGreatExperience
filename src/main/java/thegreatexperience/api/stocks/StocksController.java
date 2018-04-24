@@ -27,17 +27,18 @@ public class StocksController {
     ObjectMapper objectMapper;
 
     @RequestMapping("")
-    public String getStocks(){
+    public ResponseEntity getStocks(){
         RestClient restClient = new RestClient(props.getStockUrl() + "function=SECTOR&outputsize=compact&apikey=" + props.getStockApiKey());
 
         JsonNode json = null;
         try{
-            // json = objectMapper.readTree(restClient.doGet().getBody().toString());
+             json = objectMapper.readTree(restClient.doGet());
         }catch (Exception e){
             log.error(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error");
         }
 
-        return json.get("Weekly Time Series").toString();
+        return ResponseEntity.ok(json);
     }
 
     @RequestMapping("{stock}")
