@@ -6,4 +6,4 @@ const Viewport = ({ children }) =>
     {children}
   </div>;
 
-export default Viewport;
+exports.default = Viewport;
