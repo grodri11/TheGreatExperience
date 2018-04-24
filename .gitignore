@@ -1,1 +1,6 @@
-/WebContent/static/reactui/node_modules
+/.idea
+/.gradle
+/out
+/build
+.DS_Store
+/src/main/webapp/reactui/node_modules
