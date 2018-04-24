@@ -15,7 +15,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WebContent/reactui/public/");
+        resolver.setPrefix("/reactui/public/");
         resolver.setSuffix(".html");
         return resolver;
     }
