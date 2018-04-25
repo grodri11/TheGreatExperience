@@ -49,7 +49,22 @@
             {children}
         </div>;
     
-        class Dashboard extends React.Component {
+    const List = ({ children }) => {
+        return (
+            <div className="list-overflow-container">
+            <ul className="list-group">
+                {children}
+            </ul>
+            </div>
+        );
+    };
+
+    const ListItem = props =>
+        <li className="list-group-item">
+            {props.children}
+        </li>;
+    
+    class Dashboard extends React.Component {
             state = {
                 stocks: [],
                 weather: []
