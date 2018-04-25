@@ -2,6 +2,7 @@ package thegreatexperience.api.user;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -12,8 +13,16 @@ public class User {
 
     String username;
     String password;
+    String email;
 
-    Long pref_id;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getUsr_id() {
         return usr_id;
@@ -39,11 +48,4 @@ public class User {
         this.password = password;
     }
 
-    public Long getPref_id() {
-        return pref_id;
-    }
-
-    public void setPref_id(Long pref_id) {
-        this.pref_id = pref_id;
-    }
 }

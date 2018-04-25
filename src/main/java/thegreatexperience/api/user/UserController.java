@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import thegreatexperience.api.user.preferences.PreferencesDAO;
 import thegreatexperience.config.ApplicationProps;
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private PreferencesDAO preferencesDAO;
 
     @RequestMapping("")
     public ResponseEntity getAllUserInfo(){
@@ -53,15 +57,30 @@ public class UserController {
 
     @RequestMapping("/{username}")
     public ResponseEntity getUserInfo(@PathVariable String username){
-      User user =  userDAO.findByUsername(username);
-      String response;
+        User user =  userDAO.findByUsername(username);
+        String response;
 
-      try{
-           response = objectMapper.writeValueAsString(user);
-      }catch(Exception e){
-          log.error(e.getMessage());
-          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error");
-      }
+        try{
+            response = objectMapper.writeValueAsString(user);
+        }catch(Exception e){
+            log.error(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error");
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @RequestMapping("{id}/preferences")
+    public ResponseEntity getUserPreferences(@PathVariable int usrId){
+        //List<Preferences> preferencesList =  preferencesDAO.findAll();
+        String response;
+
+        try{
+            response = objectMapper.writeValueAsString("");
+        }catch(Exception e){
+            log.error(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error");
+        }
 
         return ResponseEntity.ok(response);
     }
