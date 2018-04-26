@@ -1,10 +1,10 @@
 import React from "react";
 import Dashboard from "./pages/Dashboard";
 
-const App = () => (
+export const App = () => (
   <div>
     <Dashboard />
   </div>
 );
 
-exports.default = App;
+export default App;
